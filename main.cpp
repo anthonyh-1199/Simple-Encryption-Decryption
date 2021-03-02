@@ -12,12 +12,18 @@ int main()
 	int cipherKey;
 	
     //User inputs their message
-    cout << "Please enter your message: "; 
+
     
-    cin >> inputMessage;
+    //User chooses to encrypt or decrypt their message
     
-    cout << inputMessage;
     
+    //User enters their key
+    
+    
+    //Encryption / decryption algorithm
+    
+    
+    //Print the resulting message
     
       
     return 0; 
