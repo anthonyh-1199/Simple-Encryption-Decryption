@@ -5,6 +5,37 @@
 
 #include<iostream>  
 using namespace std; 
+
+//Creates a random 5-letter long string as a key
+//Loops through each letter in the message and shifts it based on the respective letter in the key
+string messageEncrypt(string s){
+	//Instantiate variables
+	char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
+	string key, output;
+	
+	//Create random key
+	for (int i = 0; i < 5; i++){
+		key += alphabet[rand() % 26];
+	}
+	
+	//Loops through each letter in the message, and shift them based on the letter in the key
+	for (int i = 0; i < s.length(); i++){
+		char c = s.at(i); //The char in that position in the message
+
+		if (isalpha(c)){ //If the character is a letter
+			c += key.at(0) - 96; //Shift it based on the key (TO-DO)
+
+			if (c > 'z'){ //Character overflow
+				c = c - 'z' + 'a' - 1;
+			}
+
+			cout << c;
+			output += c;
+		}
+	}
+	
+	return key;
+}
   
 int main() 
 { 
@@ -28,6 +59,7 @@ int main()
     	//Use specific key or random key?
     	
     	//Encrypt the message
+    	cout << messageEncrypt(inputMessage);
     	
     	//Print out the encrypted message
     	
@@ -48,7 +80,5 @@ int main()
 		cout << "Invalid input, exiting application...";
 	}
 
-    
-      
     return 0; 
 } 
