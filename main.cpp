@@ -12,29 +12,41 @@ string messageEncrypt(string s){
 	//Instantiate variables
 	char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 	string key, output;
+	int keyLoop = 0;
 	
 	//Create random key
 	for (int i = 0; i < 5; i++){
 		key += alphabet[rand() % 26];
 	}
-	
+
 	//Loops through each letter in the message, and shift them based on the letter in the key
 	for (int i = 0; i < s.length(); i++){
 		char c = s.at(i); //The char in that position in the message
 
 		if (isalpha(c)){ //If the character is a letter
-		
-			if (c + key.at(0) - 96 > 'z'){ //Character overflow fix
+
+			//Character overflow fix
+			if (c + key.at(keyLoop) - 96 > 'z'){ 
 				c = c - 'z' + 'a' - 1;
 			}
-				
-			c += key.at(0) - 96; //Shift the character
-
-			output += c;
+			
+			//Shift the character
+			c += key.at(keyLoop) - 96; 
+			
+			//Store the result
+			output += c; 
+			
+			//Increment through the key
+			keyLoop++;
+			
+			if (keyLoop >= key.length()){
+				keyLoop = 0;
+			}
+			
 		}
 	}
 	
-	cout << key + "\n";
+	cout << "Generated key: " + key + "\n";
 	return output;
 }
   
@@ -60,9 +72,10 @@ int main()
     	//Use specific key or random key?
     	
     	//Encrypt the message
-    	cout << messageEncrypt(inputMessage);
+    	outputMessage = messageEncrypt(inputMessage);
     	
     	//Print out the encrypted message
+    	cout << "Encrypted message: " + outputMessage;
     	
     	//Print out the key
 	}
