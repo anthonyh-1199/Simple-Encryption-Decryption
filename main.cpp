@@ -23,18 +23,19 @@ string messageEncrypt(string s){
 		char c = s.at(i); //The char in that position in the message
 
 		if (isalpha(c)){ //If the character is a letter
-			c += key.at(0) - 96; //Shift it based on the key (TO-DO)
-
-			if (c > 'z'){ //Character overflow
+		
+			if (c + key.at(0) - 96 > 'z'){ //Character overflow fix
 				c = c - 'z' + 'a' - 1;
 			}
+				
+			c += key.at(0) - 96; //Shift the character
 
-			cout << c;
 			output += c;
 		}
 	}
 	
-	return key;
+	cout << key + "\n";
+	return output;
 }
   
 int main() 
