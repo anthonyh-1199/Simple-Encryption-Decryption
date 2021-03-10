@@ -44,21 +44,58 @@ string messageEncrypt(string s){
 				keyLoop = 0;
 			}
 			
-		} else if (c == ' '){
-			output += " "; 
+		} else {
+			output += c; 
 		}
 	}
 	
 	cout << "Generated key: " + key + "\n";
 	return output;
 }
+
+string messageDecrypt(string s, string key){
+	//Instantiate variables
+	char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
+	string output;
+	int keyLoop = 0;
+	
+	//Loop through each letter in the message, and shift them in reverse based on the letter in the key
+	for (int i = 0; i < s.length(); i++){
+		char c = s.at(i); //The char in that position in the message
+
+		if (isalpha(c)){ //If the character is a letter
+
+			//Character overflow fix
+			if (c - key.at(keyLoop) + 96 < 'a'){ 
+				c = c + 'z' - 'a' + 1;
+			}
+			
+			//Shift the character
+			c -= key.at(keyLoop) - 96; 
+			
+			//Store the result
+			output += c; 
+			
+			//Increment through the key
+			keyLoop++;
+			
+			if (keyLoop >= key.length()){
+				keyLoop = 0;
+			}
+			
+		} else {
+			output += c; 
+		}
+	}
+	
+	return output;
+}
   
 int main() 
 { 
 	//Instantiate variables
-	string outputMessage;
+	string outputMessage, cipherKey;
 	std::string inputMessage;
-	int cipherKey;
 	char actionType;
 	
     //User inputs their message
@@ -87,10 +124,15 @@ int main()
 	//Decryption code
 	else if (actionType == 'd' or actionType == 'D'){
 		//Enter the decryption key
+	    cout << "\nEnter the key: ";
+	    
+	    cin >> cipherKey;
 		
 		//Decrypt the message
+		outputMessage = messageDecrypt(inputMessage, cipherKey);
 		
 		//Print out the decrypted message
+    	cout << "Decrypted message: " + outputMessage;
 	}
 	
 	//Invalid actionType
