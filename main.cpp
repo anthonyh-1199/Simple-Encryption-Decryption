@@ -4,6 +4,7 @@
 // Simple C++ program that allows the user to encrypt / decrypt a message
 
 #include<iostream>  
+#include <stdlib.h>
 using namespace std; 
 
 //Creates a random 5-letter long string as a key
@@ -43,6 +44,8 @@ string messageEncrypt(string s){
 				keyLoop = 0;
 			}
 			
+		} else if (c == ' '){
+			output += " "; 
 		}
 	}
 	
@@ -53,14 +56,15 @@ string messageEncrypt(string s){
 int main() 
 { 
 	//Instantiate variables
-	string inputMessage, outputMessage;
+	string outputMessage;
+	std::string inputMessage;
 	int cipherKey;
 	char actionType;
 	
     //User inputs their message
     cout << "Please enter your message: "; 
     
-    cin >> inputMessage;
+    std::getline(std::cin, inputMessage);
     
     //User chooses to encrypt or decrypt their message
     cout << "\nEnter the corresponding letter (e/d) if you wish to encrypt or decrypt: ";
