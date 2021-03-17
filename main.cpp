@@ -89,22 +89,46 @@ string messageDecrypt(string s, string key){
 
 		if (isalpha(c)){ //If the character is a letter
 
-			//Character overflow fix
-			if (c - key.at(keyLoop) + 96 < 'a'){ 
-				c = c + 'z' - 'a' + 1;
-			}
-			
-			//Shift the character
-			c -= key.at(keyLoop) - 96; 
-			
-			//Store the result
-			output += c; 
-			
-			//Increment through the key
-			keyLoop++;
-			
-			if (keyLoop >= key.length()){
-				keyLoop = 0;
+			//Lowercase letters
+			if (islower(c)){
+				//Character overflow fix
+				if (c - key.at(keyLoop) + 96 < 'a'){ 
+					c = c + 'z' - 'a' + 1;
+				}
+				
+				//Shift the character
+				c -= key.at(keyLoop) - 96; 
+				
+				//Store the result
+				output += c; 
+				
+				//Increment through the key
+				keyLoop++;
+				
+				if (keyLoop >= key.length()){
+					keyLoop = 0;
+				}
+				
+			} else 
+			//Capital letters
+			if (isupper(c)){
+				//Character overflow fix
+				if (c - key.at(keyLoop) + 96 < 'A'){ 
+					c = c + 'Z' - 'A' + 1;
+				}
+				
+				//Shift the character
+				c -= key.at(keyLoop) - 96; 
+				
+				//Store the result
+				output += c; 
+				
+				//Increment through the key
+				keyLoop++;
+				
+				if (keyLoop >= key.length()){
+					keyLoop = 0;
+				}
 			}
 			
 		} else {
