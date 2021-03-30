@@ -5,7 +5,9 @@
 
 #include<iostream>  
 #include <stdlib.h>
-using namespace std; 
+#include <limits>
+
+using namespace std;
 
 //Creates a random 5-letter long string as a key
 //Loops through each letter in the message and shifts it based on the respective letter in the key
@@ -142,13 +144,13 @@ string messageDecrypt(string s, string key){
 void cipherMenu(){
 	//Instantiate variables
 	string outputMessage, cipherKey;
-	std::string inputMessage;
+	string inputMessage;
 	char actionType;
 	
     //User inputs their message
     cout << "Please enter your message: "; 
     
-    std::getline(std::cin, inputMessage);
+    getline(cin, inputMessage);
     
     //User chooses to encrypt or decrypt their message
     cout << "\nEnter the corresponding letter (e/d) if you wish to encrypt or decrypt: ";
@@ -190,7 +192,27 @@ void cipherMenu(){
   
 int main() 
 { 
-	cipherMenu();
+	bool exit = false;
+	string answer;
+	
+	while (exit == false){
+		cipherMenu();
+		
+		cout << "\nDo you wish to encrypt/decrypt something else? (Y/N): ";
+		cin >> answer;
+		
+		//Check if answer was not a yes
+		if (answer != "Y"){
+			exit = true;
+		} else {		
+			cout << "\n";
+			
+        	cin.clear();
+        	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		}
+		
+		
+	}
 
     return 0; 
 } 
