@@ -138,9 +138,8 @@ string messageDecrypt(string s, string key){
 	
 	return output;
 }
-  
-int main() 
-{ 
+
+void cipherMenu(){
 	//Instantiate variables
 	string outputMessage, cipherKey;
 	std::string inputMessage;
@@ -164,7 +163,7 @@ int main()
     	outputMessage = messageEncrypt(inputMessage);
     	
     	//Print out the encrypted message
-    	cout << "Encrypted message: " + outputMessage;
+    	cout << "Encrypted message: " + outputMessage + "\n";
     	
     	//Print out the key
 	}
@@ -180,13 +179,18 @@ int main()
 		outputMessage = messageDecrypt(inputMessage, cipherKey);
 		
 		//Print out the decrypted message
-    	cout << "Decrypted message: " + outputMessage;
+    	cout << "Decrypted message: " + outputMessage + "\n";
 	}
 	
 	//Invalid actionType
 	else {
 		cout << "Invalid input, exiting application...";
 	}
+}
+  
+int main() 
+{ 
+	cipherMenu();
 
     return 0; 
 } 
