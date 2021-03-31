@@ -161,6 +161,10 @@ string messageDecrypt(string s, string key){
 	return output;
 }
 
+/*
+Provides a UI system that allows the user to encrypt or decrypt a message
+using the encryption and decryption functions
+*/
 void cipherMenu(){
 	//Instantiate variables
 	string outputMessage, cipherKey;
@@ -201,7 +205,7 @@ void cipherMenu(){
 		cout << "Invalid input, exiting application...";
 	}
 }
-  
+
 int main() 
 { 
 	bool exit = false;
