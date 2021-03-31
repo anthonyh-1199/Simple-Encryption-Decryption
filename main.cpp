@@ -6,11 +6,14 @@
 #include<iostream>  
 #include <stdlib.h>
 #include <limits>
+#include <algorithm>
 
 using namespace std;
 
-//Creates a random 5-letter long string as a key
-//Loops through each letter in the message and shifts it based on the respective letter in the key
+/*
+Creates a random 5-letter long string as a key
+Loops through each letter in the message and shifts it based on the respective letter in the key
+*/
 string messageEncrypt(string s){
 	//Instantiate variables
 	char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
@@ -84,6 +87,9 @@ string messageDecrypt(string s, string key){
 	char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 	string output;
 	int keyLoop = 0;
+	
+	//Force key to lower
+	transform(key.begin(), key.end(), key.begin(), ::tolower);
 	
 	//Loop through each letter in the message, and shift them in reverse based on the letter in the key
 	for (int i = 0; i < s.length(); i++){
@@ -202,7 +208,7 @@ int main()
 		cin >> answer;
 		
 		//Check if answer was not a yes
-		if (answer != "Y"){
+		if (answer != "Y" && answer != "y" && answer != "yes" && answer != "YES" && answer != "Yes"){
 			exit = true;
 		} else {		
 			cout << "\n";
