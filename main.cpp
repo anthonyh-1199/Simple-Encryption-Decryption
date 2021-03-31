@@ -79,14 +79,26 @@ string messageEncrypt(string s){
 	}
 	
 	cout << "Generated key: " + key + "\n";
+	cout << "Encrypted message: " + output + "\n";
 	return output;
 }
 
+/*
+Takes in a string of letters as a key
+Loops through each letter in the message and shifts it based on the respective letter in the key in the reverse direction
+*/
 string messageDecrypt(string s, string key){
 	//Instantiate variables
-	char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 	string output;
 	int keyLoop = 0;
+	
+	//Invalid key error
+	for (int j = 0; j < key.size(); j++){ //Loop through each character in the key
+	    if (!isalpha(key[j])){ //If a non-letter character is found, exit with error code.
+			cout << "Error: Invalid key (key cannot contain non-letter characters)\n";
+			return "";                  
+	    }
+	}
 	
 	//Force key to lower
 	transform(key.begin(), key.end(), key.begin(), ::tolower);
@@ -144,6 +156,8 @@ string messageDecrypt(string s, string key){
 		}
 	}
 	
+	cout << "Decrypted message: " + output + "\n";
+	
 	return output;
 }
 
@@ -169,11 +183,6 @@ void cipherMenu(){
     	
     	//Encrypt the message
     	outputMessage = messageEncrypt(inputMessage);
-    	
-    	//Print out the encrypted message
-    	cout << "Encrypted message: " + outputMessage + "\n";
-    	
-    	//Print out the key
 	}
 	
 	//Decryption code
@@ -185,9 +194,6 @@ void cipherMenu(){
 		
 		//Decrypt the message
 		outputMessage = messageDecrypt(inputMessage, cipherKey);
-		
-		//Print out the decrypted message
-    	cout << "Decrypted message: " + outputMessage + "\n";
 	}
 	
 	//Invalid actionType
