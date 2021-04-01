@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <limits>
 #include <algorithm>
+#include <string>
 
 using namespace std;
 
@@ -209,6 +210,7 @@ void cipherMenu(){
 int main() 
 { 
 	bool exit = false;
+	string yesArray[] = {"Y","y","Yes","yes","YES"};
 	string answer;
 	
 	while (exit == false){
@@ -218,7 +220,7 @@ int main()
 		cin >> answer;
 		
 		//Check if answer was not a yes
-		if (answer != "Y" && answer != "y" && answer != "yes" && answer != "YES" && answer != "Yes"){
+		if (find(yesArray, yesArray + 5, answer) == (yesArray + 5)){
 			exit = true;
 		} else {		
 			cout << "\n";
@@ -226,7 +228,6 @@ int main()
         	cin.clear();
         	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		}
-		
 		
 	}
 
