@@ -1,4 +1,4 @@
-# Simple Encryption-Decryption
+# Simple Encryption/Decryption
 
 ## Description
 
