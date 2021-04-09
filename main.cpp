@@ -8,6 +8,7 @@
 #include <limits>
 #include <algorithm>
 #include <string>
+#include <time.h>
 
 using namespace std;
 
@@ -20,6 +21,9 @@ string messageEncrypt(string s){
 	char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 	string key, output;
 	int keyLoop = 0;
+	
+	//Create random seed
+  	srand (time(NULL));
 	
 	//Create random key
 	for (int i = 0; i < 5; i++){
